@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <input type="text" id="texto" placeholder="ingrese el url">
+    <button onclick="obtenerCodigo()">obtener codigo</button>
+    <br>
+    <div id="codigo"></div>
+
+    <script>
+        function obtenerCodigo(){
+        const url=document.getElementsById("texto").value;
+        document.getElementById("codigo").innerHTML=url;
+        }
+
+    </script>
+</body>
+</html>
