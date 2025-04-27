@@ -10,7 +10,7 @@
     <button onclick="disminuir()">-</button>
     <p id="texto">Este es un texto de prueba.</p>
     <button onclick="aumentar()">+</button>
-    
+    <button onclick="cambiarColor()">cambiar color</button>
 
     <script>
         function disminuir(){
@@ -22,6 +22,12 @@
             let tamañoActual = window.getComputedStyle(texto).fontSize;
             let nuevoTamaño = parseInt(tamañoActual) + 2;
             texto.style.fontSize = nuevoTamaño + 'px';
+        }
+        function cambiarColor(){
+            let color=["red","blue","yellow","black","orange","brown","green","pink","purple"]
+            let tam=color.length
+            let numAleatorio=Math.floor(Math.random()*tam);
+            texto.style.color=color[numAleatorio];
         }
         
     </script>
