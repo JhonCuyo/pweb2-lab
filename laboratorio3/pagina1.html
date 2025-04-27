@@ -6,6 +6,7 @@
     <title>Pagina 1</title>
 </head>
 <body>
+    <h1>Cambiar tamaño y color de texto </h1>
     <button onclick="disminuir()">-</button>
     <p id="texto">Este es un texto de prueba.</p>
     <button onclick="aumentar()">+</button>
@@ -15,6 +16,11 @@
         function disminuir(){
             let tamañoActual = window.getComputedStyle(texto).fontSize;
             let nuevoTamaño = parseInt(tamañoActual) - 2;
+            texto.style.fontSize = nuevoTamaño + 'px';
+        }
+        function aumentar(){
+            let tamañoActual = window.getComputedStyle(texto).fontSize;
+            let nuevoTamaño = parseInt(tamañoActual) + 2;
             texto.style.fontSize = nuevoTamaño + 'px';
         }
         
