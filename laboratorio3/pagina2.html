@@ -17,8 +17,8 @@
             <option value="%">%</option>
         </optgroup>
         <optgroup label="Lógicas">
-            <option value="AND">AND (&&)</option>
-            <option value="OR">OR (||)</option>
+            <option value="AND">AND</option>
+            <option value="OR">OR</option>
             <option value="NOT">NOT</option>
         </optgroup>
         <optgroup label="De Bits">
@@ -30,7 +30,7 @@
 
     <button onclick="calcular()">Calcular</button>
 
-    <p id="resultado">El resultado es: </p>
+    <p id="resultado"></p>
     <script>
         function calcular(){
             let arg1=document.getElementById("arg1").value;
@@ -38,6 +38,8 @@
             let operador=document.getElementById("operador").value;
             let res;
 
+            let num1 = Number(arg1);
+            let num2 = Number(arg2);
             switch (operador) {
                 case "+":
                     res = num1 + num2;
@@ -61,18 +63,18 @@
                     res = Boolean(num1) || Boolean(num2);
                     break;
                 case 'NOT':
-                    res = num1 & num2;
+                    res = !Boolean(num1);
                     break;
                 case '<<':
-                    res = num1 << num2;
+                    res = num1 << 1;
                     break;
                 case '>>':
-                    res = num1 >> num2;
+                    res = num1 >> 1;
                     break;
                 default:
                     res = 'Operador no válido';
             }
-            document.getElementById("resultado").innerHTML +=res;
+            document.getElementById("resultado").innerHTML ="El resultado es: "+res;
         }
     </script>
     
