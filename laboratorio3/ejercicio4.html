@@ -6,15 +6,19 @@
     <title>Ejercicio 4</title>
 </head>
 <body>
-    <input type="text" id="texto" placeholder="ingrese el url">
+    <input type="text" id="texto" placeholder="ingrese url">
     <button onclick="obtenerCodigo()">obtener codigo</button>
     <br>
     <div id="codigo"></div>
 
     <script>
         function obtenerCodigo(){
-        const url=document.getElementsById("texto").value;
-        document.getElementById("codigo").innerHTML=url;
+        const url=document.getElementById("texto").value;
+        let codigo="";
+        let u= new URL(url)
+        let code=u.pathname
+        codigo = code.replaceAll("-", " ").replace("/", "");
+        document.getElementById("codigo").textContent="el codigo de la sesion es: "+codigo;
         }
 
     </script>
