@@ -8,7 +8,7 @@
 <body>
     <h1>Generador de Tabla y Suma de Valores</h1>
 
-    <form id="valores">
+    <form id="formulario">
         <label for="cantidad">¿Cuántos valores tendrá la tabla?</label>
         <input type="number" id="cantidad" min="1" required>
         <button type="submit">Crear Tabla</button>
@@ -18,6 +18,24 @@
     <button id="sumar">Calcular suma</button>
     <div id="resultado"></div>
 
+    <script>
+        let cantidadForm=document.getElementById("formulario");
+        let tabla=document.getElementById("tabla");
+        
+        cantidadForm.addEventListener("submit", function(event){;
+            event.preventDefault();
+            let cantidad=document.getElementById("cantidad").value;
+
+            let tablaHTML='<table><tr>';
+            for(let i=0;i<cantidad;i++){
+                let numAleatorio=Math.floor(Math.random()*100);
+                tablaHTML +=`<td>${numAleatorio}</td>`;
+            }
+            tablaHTML +='</tr></table>';
+            tabla.innerHTML=tablaHTML;
+        });
+
+    </script>
 
 </body>
 </html>
