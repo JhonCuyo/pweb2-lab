@@ -22,17 +22,58 @@
             <option value="NOT">NOT</option>
         </optgroup>
         <optgroup label="De Bits">
-            <option value="Izq">Desplazar Izquierda</option>
-            <option value="Der">Desplazar Derecha</option>
+            <option value="<<">Desplazar Izquierda</option>
+            <option value=">>">Desplazar Derecha</option>
         </optgroup>
     </select>
     <input type="text" id="arg2" placeholder="Segundo argumento">
 
     <button onclick="calcular()">Calcular</button>
 
-    <div id="resultado"></div>
+    <p id="resultado">El resultado es: </p>
     <script>
+        function calcular(){
+            let arg1=document.getElementById("arg1").value;
+            let arg2=document.getElementById("arg2").value;
+            let operador=document.getElementById("operador").value;
+            let res;
 
+            switch (operador) {
+                case "+":
+                    res = num1 + num2;
+                    break;
+                case '-':
+                    res = num1 - num2;
+                    break;
+                case '*':
+                    res = num1 * num2;
+                    break;
+                case '/':
+                    res = num1 / num2;
+                    break;
+                case '%':
+                    res = num1 % num2;
+                    break;
+                case 'AND':
+                    res = Boolean(num1) && Boolean(num2);
+                    break;
+                case 'OR':
+                    res = Boolean(num1) || Boolean(num2);
+                    break;
+                case 'NOT':
+                    res = num1 & num2;
+                    break;
+                case '<<':
+                    res = num1 << num2;
+                    break;
+                case '>>':
+                    res = num1 >> num2;
+                    break;
+                default:
+                    res = 'Operador no válido';
+            }
+            document.getElementById("resultado").innerHTML +=res;
+        }
     </script>
     
 </body>
