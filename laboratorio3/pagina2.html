@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina 2</title>
+</head>
+<body>
+    <h1>Calculadora Dinamica</h1>
+    <input type="text" id="arg1" placeholder="Primer argumento">
+    <select id="operador">
+        <optgroup label="Aritméticas">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </optgroup>
+        <optgroup label="Lógicas">
+            <option value="AND">AND (&&)</option>
+            <option value="OR">OR (||)</option>
+            <option value="NOT">NOT</option>
+        </optgroup>
+        <optgroup label="De Bits">
+            <option value="Izq">Desplazar Izquierda</option>
+            <option value="Der">Desplazar Derecha</option>
+        </optgroup>
+    </select>
+    <input type="text" id="arg2" placeholder="Segundo argumento">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado"></div>
+    <script>
+
+    </script>
+    
+</body>
+</html>
