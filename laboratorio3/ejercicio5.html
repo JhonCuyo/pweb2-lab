@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 5</title>
+    <style>
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Generador de Tabla y Suma de Valores</h1>
@@ -15,26 +27,30 @@
     </form>
 
     <div id="tabla" ></div>
-    <button id="sumar">Calcular suma</button>
-    <div id="resultado"></div>
+    <button id="sumar" onclick="Sumar()">Calcular suma</button>
+    <p id="resultado">La suma es: </p>
 
     <script>
         let cantidadForm=document.getElementById("formulario");
         let tabla=document.getElementById("tabla");
-        
+        var suma=0;
         cantidadForm.addEventListener("submit", function(event){;
             event.preventDefault();
             let cantidad=document.getElementById("cantidad").value;
+            
 
             let tablaHTML='<table><tr>';
             for(let i=0;i<cantidad;i++){
                 let numAleatorio=Math.floor(Math.random()*100);
+                suma+=numAleatorio;
                 tablaHTML +=`<td>${numAleatorio}</td>`;
             }
             tablaHTML +='</tr></table>';
             tabla.innerHTML=tablaHTML;
         });
-
+        function Sumar(){
+        document.getElementById("resultado").textContent+=suma;
+        }
     </script>
 
 </body>
