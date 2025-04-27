@@ -7,74 +7,151 @@
 </head>
 <body>
     <h1>Calculadora Dinamica</h1>
-    <input type="text" id="arg1" placeholder="Primer argumento">
-    <select id="operador">
-        <optgroup label="Aritméticas">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-            <option value="%">%</option>
-        </optgroup>
-        <optgroup label="Lógicas">
-            <option value="AND">AND</option>
-            <option value="OR">OR</option>
-            <option value="NOT">NOT</option>
-        </optgroup>
-        <optgroup label="De Bits">
-            <option value="<<">Desplazar Izquierda</option>
-            <option value=">>">Desplazar Derecha</option>
-        </optgroup>
+
+    <label for="tipo">Tipo de operación:</label>
+    <select id="tipo" onchange="cargarOperadores()">
+        <option value="">--Seleccione un tipo--</option>
+        <option value="aritmetica">Aritmética</option>
+        <option value="logica">Lógica</option>
+        <option value="bits">Bits</option>
     </select>
-    <input type="text" id="arg2" placeholder="Segundo argumento">
+
+
+    <br><br>
+
+    <label for="operador">Operador:</label>
+    <select id="operador" disabled onchange="ajustarArgumentos()">
+        <option value="">--Seleccione un operador--</option>
+    </select>
+
+    <br><br>
+
+    <label for="arg1">Primer argumento:</label>
+    <input type="text" id="arg1">
+
+    <br><br>
+
+    <label for="arg2">Segundo argumento:</label>
+    <input type="text" id="arg2">
+
+    <br><br>
 
     <button onclick="calcular()">Calcular</button>
 
-    <p id="resultado"></p>
+    <h3>Resultado: <span id="resultado"></span></h3>
+
     <script>
-        function calcular(){
-            let arg1=document.getElementById("arg1").value;
-            let arg2=document.getElementById("arg2").value;
-            let operador=document.getElementById("operador").value;
+        function cargarOperadores() {
+            let tipo = document.getElementById('tipo').value;
+            let operador = document.getElementById('operador');
+            operador.innerHTML = ''; // Limpiar opciones
+            operador.disabled = false;
+
+            let opciones = ['<option value="">--Seleccione un operador--</option>'];
+
+            if (tipo === 'aritmetica') {
+                opciones.push('<option value="+">+</option>');
+                opciones.push('<option value="-">-</option>');
+                opciones.push('<option value="*">*</option>');
+                opciones.push('<option value="/">/</option>');
+                opciones.push('<option value="%">%</option>');
+            } else if (tipo === 'logica') {
+                opciones.push('<option value="&&">AND (&&)</option>');
+                opciones.push('<option value="||">OR (||)</option>');
+                opciones.push('<option value="!">NOT (!)</option>');
+            } else if (tipo === 'bits') {
+                opciones.push('<option value="&">AND (&)</option>');
+                opciones.push('<option value="|">OR (|)</option>');
+                opciones.push('<option value="^">XOR (^)</option>');
+                opciones.push('<option value="<<">Desplazar izquierda (<<)</option>');
+                opciones.push('<option value=">>">Desplazar derecha (>>)</option>');
+            }
+
+            operador.innerHTML = opciones.join('');
+        }
+
+        function ajustarArgumentos() {
+            let op = document.getElementById('operador').value;
+            let arg2 = document.getElementById('arg2');
+            if (op === '!' || op === '<<' || op === '>>') {
+                arg2.disabled = true;
+                arg2.value = '';
+            } else {
+                arg2.disabled = false;
+            }
+        }
+
+        function calcular() {
+            let tipo = document.getElementById('tipo').value;
+            let operador = document.getElementById('operador').value;
             let res;
 
-            let num1 = Number(arg1);
-            let num2 = Number(arg2);
-            switch (operador) {
-                case "+":
-                    res = num1 + num2;
-                    break;
-                case '-':
-                    res = num1 - num2;
-                    break;
-                case '*':
-                    res = num1 * num2;
-                    break;
-                case '/':
-                    res = num1 / num2;
-                    break;
-                case '%':
-                    res = num1 % num2;
-                    break;
-                case 'AND':
-                    res = Boolean(num1) && Boolean(num2);
-                    break;
-                case 'OR':
-                    res = Boolean(num1) || Boolean(num2);
-                    break;
-                case 'NOT':
-                    res = !Boolean(num1);
-                    break;
-                case '<<':
-                    res = num1 << 1;
-                    break;
-                case '>>':
-                    res = num1 >> 1;
-                    break;
-                default:
-                    res = 'Operador no válido';
+            if (tipo === 'aritmetica') {
+                let num1 = Number(document.getElementById('arg1').value);
+                let num2 = Number(document.getElementById('arg2').value);
+                res = operarAritmetica(num1, num2, operador);
+            } else if (tipo === 'logica') {
+                let num1 = document.getElementById('arg1').value;
+                let num2 = document.getElementById('arg2').value;
+                if(num1 =='true')
+                num1=true;
+                else
+                num1=false;
+                if(num2=='true')
+                num2=true;
+                else
+                num2=false;
+                res = operarLogica(num1, num2, operador);
+            } else if (tipo === 'bits') {
+                let num1 = Number(document.getElementById('arg1').value);
+                let num2 = Number(document.getElementById('arg2').value);
+                res = operarBits(num1, num2, operador);
+            } else {
+                res = 'Seleccione un tipo de operación';
             }
-            document.getElementById("resultado").innerHTML ="El resultado es: "+res;
+
+            document.getElementById('resultado').textContent = res;
+        }
+
+        function operarAritmetica(num1, num2, operador) {
+            switch (operador) {
+                case '+':
+                    return num1 + num2;
+                case '-':
+                    return num1 - num2;
+                case '*':
+                    return num1 * num2;
+                case '/':
+                    return num1 / num2;
+                case '%':
+                    return num1 % num2;
+                default:
+                    return 'Operador aritmético inválido';
+            }
+        }
+
+        function operarLogica(num1, num2, operador) {
+            switch (operador) {
+                case '&&':
+                    return (num1 && num2);
+                case '||':
+                    return (num1 || num2);
+                case '!':
+                    return !num1;
+                default:
+                    return 'Operador lógico inválido';
+            }
+        }
+
+        function operarBits(num1, operador) {
+            switch (operador) {
+                case '<<':
+                    return num1 << 1; // desplazamiento de 1 posición
+                case '>>':
+                    return num1 >> 1; // desplazamiento de 1 posición
+                default:
+                    return 'Operador de bits inválido';
+            }
         }
     </script>
     
