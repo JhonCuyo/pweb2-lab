@@ -4,17 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 2</title>
+    <style>
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .caja {
+            width: 45%;
+            padding: 10px;
+            border: 1px solid #000;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <input type="text" id="texto" placeholder="Escribe un texto">
-        <button onclick="ivertirText()">Invertir</button>
+        <h2>Invertir texto</h2>
+    <div class="contenedor">
+        <div class="caja">
+            <input type="text" id="texto" placeholder="Escribe un texto">
+            <br>
+            <button onclick="invertirTexto()">Invertir</button>
+        </div>
+        <div class="caja">
+            <p>Texto invertido:</p>
+            <div id="resultado"></div>
+        </div>
     </div>
-    <div id="resultado">
         <script>
-            function invertirTexto
+            function invertirTexto(){
+                const texto=document.getElementById("texto").value;
+                const textoInvertido=texto.split("").reverse().join("");
+                document.getElementById("resultado").innerHTML=textoInvertido;
+            }
         </script>
-    </div>
     
 </body>
 </html>
