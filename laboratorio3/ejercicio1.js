@@ -1,7 +1,8 @@
 function DiaSemana(numeroDia){
-    const dias=["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-    return dias=[numeroDia];
+    let dias=["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    return dias[numeroDia];
 }
-const fechaActual= new Date();
-const numeroDia=fechaActual.getDay();
-console.log(DiaSemana(numeroDia));
+let fechaActual= new Date();
+let numeroDia=fechaActual.getDay();
+let dia= DiaSemana(numeroDia);
+document.getElementById("dia").textContent=dia;
