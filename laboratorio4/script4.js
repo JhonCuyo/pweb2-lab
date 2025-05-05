@@ -1,3 +1,5 @@
+const { title } = require("process");
+
 function mostrarGraficoArequipa(){
     fetch("data.json")
         .then(response => response.json())
@@ -14,5 +16,12 @@ function mostrarGraficoArequipa(){
                     datos.push([new Date(dia.date), parseInt(dia.value, 10)]);
                 });
                 const dataChart = google.visualization.arrayToDataTable(datos);
-            
+                
+                const options = {
+                    title: "Evolucion de casos confirmados en Arequipa",
+                    curveType: "function",
+                    legend: { position: "bottom" },
+                    hAxis: { title: "Fecha" },
+                    vAxis: { title: "Casos Confirmados" },
+                };
 }
