@@ -22,5 +22,15 @@ function mayorRegiones(){
                 }, 0);
                 return { region: regionData.region, total: totalConfirmados };
             });
-            
+            const top10 = regionesTotales.sort((a, b) => b.total - a.total).slice(0, 10);
+
+            top10.forEach(({ region, total }) => {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `<td>${region}</td><td>${total}</td>`;
+                tbody.appendChild(fila);
+            });
+            table.appendChild(tbody);
+            container.appendChild(table);
+        })
+        .catch(error => console.error("error al cargar los datos:", error));
 }
