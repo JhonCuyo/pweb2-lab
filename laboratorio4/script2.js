@@ -15,6 +15,14 @@ function mostrarTotal(){
             table.appendChild(thead);
 
             const tbody = document.createElement("tbody");
+            data.forEach(regionData => {
+                const region = regionData.region;
+                const totalConfirmados = regionData.confirmed.reduce((total, diaData) =>{
+                    return total + parseInt(diaData.value, 10);
+                },0);
 
-
+                const fila = document.createElement("tr");
+                fila.innerHTML = `<td>${region}</td><td>${totalConfirmados}</td>`;
+                tbody.appendChild(fila);
+            });
 }
