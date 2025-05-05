@@ -11,7 +11,9 @@ function mostrarGraficoArequipa(){
             google.charts.setOnLoadCallback(()=>{
                 const datos =[["Fecha", "Confirmados"]];
                 arequipa.confirmed.forEach(dia => {
-                    datos.push([new Date(dia.date), parseInt(dia.value, 10)]);
+                    const [diaStr, mesStr, anioStr] = dia.date.split("-");
+                    const fecha = new Date(parseInt(anioStr), parseInt(mesStr) - 1, parseInt(diaStr));
+                    datos.push([fecha, parseInt(dia.value, 10)]);
                 });
                 const dataChart = google.visualization.arrayToDataTable(datos);
                 
