@@ -22,7 +22,7 @@ function mostrarGraficoComparativo(){
                     },
                     legend: 'none'
                 };
-                const chart = new google.visualization.PieChart(document.getElementById("grafico"));
+                const chart = new google.visualization.LineChart(document.getElementById("grafico"));
                 chart.draw(dataChart, options);
             });
         })
