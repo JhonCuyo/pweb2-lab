@@ -1,9 +1,9 @@
 function cargarRegiones(){
-    fetch('/data')
+    fetch('data.json')
         .then(response => response.json())
         .then(data => {
             const regionesUnicas = [...new Set(data.map(u => u.region))]; 
-            const container = document.getElementById("checkbox-container");
+            const container = document.getElementById("Listar");
             container.innerHTML = ''; 
 
             const ul = document.createElement("ul");
