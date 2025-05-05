@@ -16,5 +16,11 @@ function mayorRegiones(){
 
             const tbody = document.createElement("tbody");
 
+            const regionesTotales = data.map(regionData => {
+                const totalConfirmados = regionData.confirmed.reduce((total, diaData) => {
+                    return total + parseInt(diaData.value, 10);
+                }, 0);
+                return { region: regionData.region, total: totalConfirmados };
+            });
             
 }
