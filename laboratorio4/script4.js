@@ -1,5 +1,3 @@
-const { title } = require("process");
-
 function mostrarGraficoArequipa(){
     fetch("data.json")
         .then(response => response.json())
@@ -24,4 +22,9 @@ function mostrarGraficoArequipa(){
                     hAxis: { title: "Fecha" },
                     vAxis: { title: "Casos Confirmados" },
                 };
+                const chart = new google.visualization.LineChart(document.getElementById("grafico"));
+                chart.draw(dataChart, options);
+            });
+        })
+        .catch(error => console.error("error al cargar los datos:", error));
 }
