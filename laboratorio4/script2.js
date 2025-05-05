@@ -8,7 +8,7 @@ function mostrarTotal(){
             const table = document.createElement("table");
             table.border = "1";
             table.style.borderCollapse = "collapse";
-            table.style.width = "100%";
+            table.style.width = "50%";
 
             const thead = document.createElement("thead");
             thead.innerHTML="<tr><th>Región</th><th>Total Confirmados</th></tr>";
@@ -25,4 +25,8 @@ function mostrarTotal(){
                 fila.innerHTML = `<td>${region}</td><td>${totalConfirmados}</td>`;
                 tbody.appendChild(fila);
             });
+            table.appendChild(tbody);
+            container.appendChild(table);
+        })
+        .catch(error => console.error("error al cargar los datos:", error));
 }
