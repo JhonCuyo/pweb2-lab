@@ -15,3 +15,14 @@ function cargarRegiones() {
         })
         .catch(error => console.error("error al cargar las regiones:", error));
 }
+function generarGrafico() {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const checkboxes = document.querySelectorAll(".region-checkbox:checked");
+            const regionesSeleccionadas = Array.from(checkboxes).map(checkbox => checkbox.value);
+            if (regionesSeleccionadas.length === 0) {
+                alert("Por favor, selecciona al menos una región.");
+                return;
+            }
+}
