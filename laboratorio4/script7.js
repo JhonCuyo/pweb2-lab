@@ -1,0 +1,17 @@
+function cargarRegiones() {
+    console.log("cargando regiones");
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const regionesUnicas = [...new Set(data.map(u => u.region))]; 
+            const container = document.getElementById("checkbox-container");
+            container.innerHTML = ''; 
+            regionesUnicas.forEach(region => {
+                const label = document.createElement("label");
+                label.style.display = "block";
+                label.innerHTML = `<input type="checkbox" value="${region}" class="region-checkbox"> ${region}`;
+                container.appendChild(label);
+            });
+        })
+        .catch(error => console.error("error al cargar las regiones:", error));
+}
