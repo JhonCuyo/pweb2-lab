@@ -2,20 +2,6 @@ function mayorRegiones(){
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            const container = document.getElementById("contenedor");
-            container.innerHTML = "";
-
-            const table = document.createElement("table");
-            table.border = "1";
-            table.style.borderCollapse = "collapse";
-            table.style.width = "50%";
-
-            const thead = document.createElement("thead");
-            thead.innerHTML="<tr><th>Región</th><th>Total Confirmados</th></tr>";
-            table.appendChild(thead);
-
-            const tbody = document.createElement("tbody");
-
             const regionesTotales = data.map(regionData => {
                 const totalConfirmados = regionData.confirmed.reduce((total, diaData) => {
                     return total + parseInt(diaData.value, 10);
@@ -23,14 +9,21 @@ function mayorRegiones(){
                 return { region: regionData.region, total: totalConfirmados };
             });
             const top10 = regionesTotales.sort((a, b) => b.total - a.total).slice(0, 10);
-
+            const datosTabla = [["Región", "Total Confirmados"]];
             top10.forEach(({ region, total }) => {
-                const fila = document.createElement("tr");
-                fila.innerHTML = `<td>${region}</td><td>${total}</td>`;
-                tbody.appendChild(fila);
+                datosTabla.push([region, total]);
             });
-            table.appendChild(tbody);
-            container.appendChild(table);
+            google.charts.load("current", { packages: ["table"] });
+            google.charts.setOnLoadCallback(() => {
+                const dataTable = google.visualization.arrayToDataTable(datosTabla);
+                const table = new google.visualization.Table(document.getElementById("contenedor"));
+                const options ={
+                    showRowNumber: true,
+                    width: "50%",
+                    height: "auto", 
+                };
+                table.draw(dataTable, options);
+            });
         })
         .catch(error => console.error("error al cargar los datos:", error));
 }
