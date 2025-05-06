@@ -46,8 +46,8 @@ function generarGrafico() {
                 const options = {
                     title: 'Crecimiento de Casos Confirmados',
                     curveType: 'function',
-                    legend: { position: 'bottom' },
-                    hAxis: { title: 'Fecha', slantedText: true, slantedTextAngle: 45 },
+                    legend: { position: 'rigth' },
+                    hAxis: { title: 'Fecha', slantedText: true, textStyle: {fontSize : 10} ,slantedTextAngle: 45 },
                     vAxis: { title: 'Casos Confirmados', viewWindow: { min: 0 } }
                 };
                 const chart = new google.visualization.LineChart(document.getElementById('grafico'));
