@@ -10,5 +10,14 @@ function mostrarGraficoExcepcion(){
                 datos[0].push(region.region);
             }
         });
-        })
+        fechas.forEach((fechas, i) => {
+            const fila = [fechas[i]];
+            data.forEach(region => {
+                if (region.region !== "Lima" && region.region !== "Callao") {
+                    const valor = parseInt(region.confirmed[i].value,10);
+                    fila.push(valor);
+                }
+            });
+            datos.push(fila);
+        });
 }
