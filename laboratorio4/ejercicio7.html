@@ -6,10 +6,10 @@
     <title>Ejercicio 7</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-<body>
+<body onload="cargarRegiones()">
     <h1>Comparacion por regiones elegidas por el usuario</h1>
     <div id="checkbox-container"></div>
-    <button onclick="mostrarGraficoPorSeleccion()">Mostrar gráfico</button>
+    <button onclick="generarGrafico()">Mostrar gráfico</button>
     <div id="grafico" style="width: 100%; height: 700px;"></div>
     <script src="script7.js"></script>
 </body>
