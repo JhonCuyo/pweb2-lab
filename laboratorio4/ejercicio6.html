@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 6</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        html, body, #wrapper {
+            height: 100%;
+            margin: 0; padding: 0;
+        }
+        #wrapper {
+            display: flex;
+        }
+        #grafico {
+            flex: 1;           
+            height: 90%;        
+        }
+    </style>
 </head>
 <body onload="mostrarGraficoExcepcion()">
-    <h1>Grafico comparativo  de regiones excepto Lima y callao</h1>
-    <div id="grafico" tyle="width: 70%; height: 100%;"></div>
+    <h1>Grafico comparativo del crecimiento o  variacion en las regiones excepto Lima y callao</h1>
+    <div id="grafico" style="width: 100%; height: 100%;"></div>
     <script src="script6.js"></script>
 </body>
 </html>
