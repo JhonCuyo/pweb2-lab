@@ -3,27 +3,27 @@ function mostrarGraficoExcepcion(){
         .then(response => response.json())
         .then(data => {
         const fechas = data[0].confirmed.map(item => item.date);
-        const datos = [["Fecha"]];
+  
 
         const regionesFiltradas = data.filter(region => region.region !== "Lima" && region.region !== "Callao");
-            regionesFiltradas.forEach(region => {
-                datos[0].push(region.region);
-            });
-        fechas.forEach((fecha, i) => {
-            const fila = [fecha];
-            regionesFiltradas.forEach(region => {
-                const valor = parseInt(region.confirmed[i].value,10);
-                fila.push(isNaN(valor) ? 0 : valor);
-            });
-            datos.push(fila);
-        });
+         const datos = [["Fecha", ...regionesFiltradas.map(region => region.region)]];
+            for (let i=1; i<fechas.length; i++){
+                const fila = [fechas[i]];
+                regionesFiltradas.forEach(region => {
+                    const hoy =parseInt(region.confirmed[i].value, 10);
+                    const ayer = parseInt(region.confirmed[i-1].value, 10);
+                    const variacion = (isNaN(hoy)|| isNaN(ayer))? 0 : hoy - ayer;
+                    fila.push(isNaN(variacion) ? 0 : variacion); 
+                });
+                datos.push(fila);
+            }
         google.charts.load('current', { packages: ['corechart'] });
           google.charts.setOnLoadCallback(() => {
             const dataChart = google.visualization.arrayToDataTable(datos);
             const options = {
               title: 'Crecimiento de Casos Confirmados (sin Lima y Callao)',
               curveType: 'function',
-              legend: { position: 'bottom' },
+              legend: { position: 'rigth' },
               hAxis: { title: 'Fecha', slantedText: true, slantedTextAngle: 45 , viewWindow: { min: 0}},
               vAxis: { title: 'Casos Confirmados', viewWindow: { min: 0 }}
             };
