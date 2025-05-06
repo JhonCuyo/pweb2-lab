@@ -5,19 +5,31 @@ function mostrarGraficoExcepcion(){
         const fechas = data[0].confirmed.map(item => item.date);
         const datos = [["Fecha"]];
 
-        data.forEach(region => {
-            if (region.region !== "Lima" && region.region !== "Callao") {
+        const regionesFiltradas = data.filter(region => region.region !== "Lima" && region.region !== "Callao");
+            regionesFiltradas.forEach(region => {
                 datos[0].push(region.region);
-            }
-        });
-        fechas.forEach((fechas, i) => {
-            const fila = [fechas[i]];
-            data.forEach(region => {
-                if (region.region !== "Lima" && region.region !== "Callao") {
-                    const valor = parseInt(region.confirmed[i].value,10);
-                    fila.push(valor);
-                }
+            });
+        fechas.forEach((fecha, i) => {
+            const fila = [fecha];
+            regionesFiltradas.forEach(region => {
+                const valor = parseInt(region.confirmed[i].value,10);
+                fila.push(isNaN(valor) ? 0 : valor);
             });
             datos.push(fila);
         });
+        google.charts.load('current', { packages: ['corechart'] });
+          google.charts.setOnLoadCallback(() => {
+            const dataChart = google.visualization.arrayToDataTable(datos);
+            const options = {
+              title: 'Crecimiento de Casos Confirmados (sin Lima y Callao)',
+              curveType: 'function',
+              legend: { position: 'bottom' },
+              hAxis: { title: 'Fecha', slantedText: true, slantedTextAngle: 45 , viewWindow: { min: 0}},
+              vAxis: { title: 'Casos Confirmados', viewWindow: { min: 0 }}
+            };
+            const chart = new google.visualization.LineChart(document.getElementById('grafico'));
+            chart.draw(dataChart, options);
+          });
+        })
+        .catch(error => console.error("Error al cargar los datos:", error));
 }
