@@ -22,8 +22,8 @@ function mostrarGrafico(){
             const options = {
                 title: "Crecimiento de Casos Confirmados (sin Lima y Callao)",
                 curveType: "function",
-                legend: { position: "bottom" },
-                hAxis: { title: "Fecha", slantedText: true, slantedTextAngle: 45 ,textStyle :{fontSize:11}, viewWindow: { min: 0}},
+                legend: { position: "rigth", textStyle: { fontSize: 11 } },
+                hAxis: { title: "Fecha", slantedText: true, slantedTextAngle: 70 ,textStyle :{fontSize:9}, viewWindow: { min: 0}},
                 vAxis: { title: "Casos Confirmados", viewWindow: { min: 0 }}
             };
             const chart = new google.visualization.LineChart(document.getElementById("grafico"));
