@@ -20,7 +20,7 @@ function mostrarGrafico(){
         google.charts.setOnLoadCallback(() => {
             const dataChart = google.visualization.arrayToDataTable(datos);
             const options = {
-                title: "Crecimiento de Casos Confirmados (sin Lima y Callao)",
+                title: "Casos Confirmados por dia(sin Lima y Callao)",
                 curveType: "function",
                 legend: { position: "rigth", textStyle: { fontSize: 11 } },
                 hAxis: { title: "Fecha", slantedText: true, slantedTextAngle: 70 ,textStyle :{fontSize:9}, viewWindow: { min: 0}},
