@@ -40,4 +40,19 @@ function generarGrafico() {
                 });
                 datos.push(fila);
             });
+            google.charts.load('current', { packages: ['corechart'] });
+            google.charts.setOnLoadCallback(() => {
+                const dataChart = google.visualization.arrayToDataTable(datos);
+                const options = {
+                    title: 'Crecimiento de Casos Confirmados',
+                    curveType: 'function',
+                    legend: { position: 'bottom' },
+                    hAxis: { title: 'Fecha', slantedText: true, slantedTextAngle: 45 },
+                    vAxis: { title: 'Casos Confirmados', viewWindow: { min: 0 } }
+                };
+                const chart = new google.visualization.LineChart(document.getElementById('grafico'));
+                chart.draw(dataChart, options);
+            });
+        })
+        .catch(error => console.error("Error al generar el gráfico:", error));
 }
