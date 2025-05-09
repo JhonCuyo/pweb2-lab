@@ -34,7 +34,10 @@ class Picture:
   def join(self, p):
     """ Devuelve una nueva figura poniendo la figura del argumento 
         al lado derecho de la figura actual """
-    unir=[fila1+fila2 for fila1, fila2 in zip(self.img, p.img)]
+    unir = []
+    for i in range(len(self.img)):
+      nuevaFila = self.img[i] + p.img[i]
+      unir.append(nuevaFila)
     return Picture(unir)
 
   def up(self, p):
@@ -50,11 +53,19 @@ class Picture:
   def horizontalRepeat(self, n):
     """ Devuelve una nueva figura repitiendo la figura actual al costado
         la cantidad de veces que indique el valor de n """
-    repetirImg = [fila * n for fila in self.img]
+    repetirImg = []
+    for fila in self.img:
+      nuevaFila = []
+      for i in range(n):
+        nuevaFila += fila
+      repetirImg.append(nuevaFila)
     return Picture(repetirImg)
 
   def verticalRepeat(self, n):
-    repetirImg = self.img * n
+    repetirImg = []
+    for i in range(n):
+      for fila in self.img:
+        repetirImg.append(fila)
     return Picture(repetirImg)
 
   #Extra: Sólo para realmente viciosos 
