@@ -27,8 +27,9 @@ class Picture:
     """ Devuelve un negativo de la imagen """
     negativo = []
     for fila in self.img:
-      nuevaFila = [self._invColor(color) for color in fila]
-      negativo.append(nuevaFila)
+      filaLista = list(fila) if isinstance(fila, str) else fila
+      nuevaFila = [self._invColor(color) for color in filaLista]
+      negativo.append("".join(nuevaFila) if isinstance(fila, str) else nuevaFila)
     return Picture(negativo)
 
   def join(self, p):
