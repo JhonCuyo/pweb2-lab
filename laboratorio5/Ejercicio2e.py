@@ -1,6 +1,6 @@
 from interpreter import draw
 from chessPictures import *
 cuadroBlanco=Picture(SQUARE)
-cudroNegro=cuadroBlanco.negative()
-join=cuadroBlanco.join(cudroNegro)
+cuadroNegro=cuadroBlanco.negative()
+join=cuadroNegro.join(cuadroBlanco)
 draw(join.horizontalRepeat(4))
