@@ -48,8 +48,14 @@ class Picture:
   def under(self, p):
     """ Devuelve una nueva figura poniendo la figura p sobre la
         figura actual """
-    abajo= self.img + p.img
-    return Picture(abajo)
+    superponer = []
+    for fila1, fila2 in zip(self.img, p.img):
+      nuevaFila = ""
+      for c1,c2 in zip(fila1, fila2):
+        nuevaFila += c2 if c2 != " " else c1
+      superponer.append(nuevaFila)
+
+    return Picture(superponer)
   
   def horizontalRepeat(self, n):
     """ Devuelve una nueva figura repitiendo la figura actual al costado
