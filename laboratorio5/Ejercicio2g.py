@@ -20,5 +20,7 @@ fila1=join1.horizontalRepeat(4)
 join2=cuadroNegro.join(cuadroBlanco)
 fila2=join2.horizontalRepeat(4)
 cuadroFichas=fila2.up(fila1)
-draw(cuadroFichas)
+cuadroConFichasBlancas=cuadroFichas.under(fichasBlancas)
+cuadroConFichasNegras=cuadroFichas.under(fichasNegras)
+draw(cuadroConFichasNegras)
 
