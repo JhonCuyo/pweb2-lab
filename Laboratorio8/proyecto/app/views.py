@@ -29,3 +29,13 @@ def render_to_pdf(template_src, context_dict={}):
 def generar_pdf(request):
     context = {'nombre': 'Jhon'}
     return render_to_pdf('app/pdf.html', context)
+
+def enviar_email(request):
+    send_mail(
+        'Hola desde Django',
+        'Este es un mensaje enviado automáticamente desde tu proyecto.',
+        'jcuyocc@unsa.edu.pe', 
+        ['sssjohn125@gmail.com'],  
+        fail_silently=False,
+    )
+    return HttpResponse("Correo enviado correctamente.")
