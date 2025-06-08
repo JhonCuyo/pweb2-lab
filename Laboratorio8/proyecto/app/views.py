@@ -3,6 +3,7 @@ from .models import Autor, Estudiante, Curso
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+from django.core.mail import send_mail
 
 def libros_de_autor(request, autor_id):
     autor = get_object_or_404(Autor, id=autor_id)

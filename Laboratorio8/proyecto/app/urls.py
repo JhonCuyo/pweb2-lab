@@ -6,4 +6,5 @@ urlpatterns = [
     path('estudiante/<int:estudiante_id>/', views.cursos_de_estudiante, name='cursos_de_estudiante'),
     path('curso/<int:curso_id>/', views.estudiantes_de_curso, name='estudiantes_de_curso'),
     path('reporte/pdf/', views.generar_pdf, name='generar_pdf'),
+    path('enviar/email/', views.enviar_email, name='enviar_email'),
 ]
