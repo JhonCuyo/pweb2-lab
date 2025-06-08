@@ -1,0 +1,8 @@
+<h2>Cursos de {{ estudiante.nombre }}</h2>
+<ul>
+  {% for curso in cursos %}
+    <li>{{ curso.nombre }}</li>
+  {% empty %}
+    <li>No está inscrito en ningún curso</li>
+  {% endfor %}
+</ul>
